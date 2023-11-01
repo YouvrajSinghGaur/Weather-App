@@ -21,7 +21,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "poll/wsgi.py"
+            "dest": "weatherproject/wsgi.py"
         }
     ]
 }
