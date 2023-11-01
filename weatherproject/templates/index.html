@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<!-- <body {% if exception_occurred %}
+       style="background-image: url('https://images.pexels.com/photos/3008509/pexels-photo-3008509.jpeg?auto=compress&cs=tinysrgb&w=1600');"
+      {% else %} 
+       style="background-image: url('{{ image_url }}'); height: 895px;"
+      {% endif %}
+    > -->
+
+<body style="background-image: url('{{ image_url }}'); height: 895px;">
+    <div class="container">
+        <h1>Weather App</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter City">
+            <button type='submit' class = "btn">Search </button>
+        </form>
+        <div class="weather">
+            <div class="left">
+                <h2>{{ temperature }}&#176; C</h2>
+                <h3>{{ city }}</h3>
+            </div>
+            <div class="right">
+                <div class="icon">
+                    <p><img src="http://openweathermap.org/img/w/{{icon}}.png" alt="City Image" , width="100px"></p>
+                </div>
+                <div class="condition">
+                    <p>{{ description }}</p>
+                    <p>{{ date }}</p>
+                    <p>Humidity : {{ humidity }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if exception_occured %}
+    <script>
+        window.onload = function () {
+            alert("City information is not Available");
+        }
+    </script>
+    {% endif %}
+
+</body>
+
+</html>
